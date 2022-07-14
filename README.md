@@ -1,2 +1,2 @@
 # Paint
- Pintar em Picels.
+ Pintar em Pixels.
