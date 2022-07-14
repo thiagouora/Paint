@@ -1,0 +1,41 @@
+.coresAll{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cores{
+    height: 50px;
+    width: 50px;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    margin: 20px; 
+}
+#azul{
+    background-color: blue;
+}
+#vermelho{
+    background-color: red;
+}
+#verde{
+    background-color: green;
+}
+
+.pixels{
+    height: 40px;
+    width: 40px;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.pixelContainer{
+    display: grid;
+    grid-template-columns: repeat(30,42px);
+    align-items: center;
+    justify-content: center;
+}
