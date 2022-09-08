@@ -1,49 +1,45 @@
-const pixels = document.querySelector(".pixelContainer");
-const color = document.querySelectorAll(".cores");
-const resetarBtn = document.querySelector('.btn');
-let divSelecionada = 0;
-const quadrados = 540;
+const pixels = document.querySelector('.pixelContainer')
+const qntElemento = document.querySelector('.tamanho')
+let tamanho = qntElemento.value
+const color = document.querySelector('.cores')
+const resetarBtn = document.querySelector('.btn')
+
 let colorir = false
 
-function corIndex() {
-  for (let i = 0; i < color.length; i++) {
-    color[i].addEventListener("click", function () {
-      divSelecionada = i;
-    });
-  }
-}
+function populate(tamanho) {
+  pixels.style.setProperty('--size', tamanho)
+  for (let i = 0; i < tamanho * tamanho; i++) {
+    const div = document.createElement('div')
+    div.classList.add('pixel')
 
-function criarDiv(quadrados) {
-  for (let i = 0; i < quadrados; i++) {
-    const div = document.createElement("div");
-    div.setAttribute("class", "pixels");
-    
-    div.addEventListener("mouseover", function () {
+    div.addEventListener('mouseover', function(){
         if(!colorir) return
-        let cor = getComputedStyle( color[divSelecionada])
-      div.style.backgroundColor = cor['background-color'];
-    });
+        div.style.backgroundColor = color.value
+    })
+    div.addEventListener('click', function(){
+        div.style.backgroundColor = color.value
+    })
 
-    div.addEventListener("mousedown", function () {
-        let cor = getComputedStyle( color[divSelecionada])
-      div.style.backgroundColor = cor['background-color'];
-    });
-    pixels.appendChild(div);
+    pixels.appendChild(div)
   }
 }
-window.onload = () => {
-  criarDiv(quadrados);
-  corIndex();
-};
-window.addEventListener('mousedown', function () {
-    colorir = true;
+
+window.addEventListener("mousedown", function(){
+    colorir = true
 })
-window.addEventListener('mouseup', function () {
-    colorir = false;
+window.addEventListener("mouseup", function(){
+    colorir = false
 })
 
-function resetar() {
+function reset(){
     pixels.innerHTML = ''
-    criarDiv(quadrados)
+    populate(tamanho)
 }
-resetarBtn.addEventListener('click', resetar)
+
+resetarBtn.addEventListener('click', reset)
+
+qntElemento.addEventListener('keyup', function(){
+    tamanho = qntElemento.value
+    reset()
+})
+populate(tamanho)
